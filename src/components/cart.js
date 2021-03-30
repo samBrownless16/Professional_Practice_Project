@@ -12,7 +12,7 @@ export class Cart extends React.Component {
         return (
             <div>
                 <Card style={{ width: '18rem', margin: 'auto' }}>
-                    testing
+                    Testing
                 </Card>
             </div>
         );
