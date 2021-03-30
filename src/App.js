@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from './components/navigationBar';
+import { NavigationBar } from './components/navigationBar';
 
 
 class App extends Component {
