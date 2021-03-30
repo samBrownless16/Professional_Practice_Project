@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Cart } from './cart';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-
 import Nav from 'react-bootstrap/Nav';
 import { Cart4 } from 'react-bootstrap-icons';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 
-class NavigationBar extends Component {
+export class NavigationBar extends Component {
     state = {}
     render() {
         return (
@@ -19,7 +19,7 @@ class NavigationBar extends Component {
                             <Navbar.Brand href="/">Navbar</Navbar.Brand>
                             <Nav className="NavLinks ">
                                 <Nav.Link href="/">Home</Nav.Link>
-                              <Nav.Link href="/cart">Page_One</Nav.Link> 
+                                <Nav.Link href="/cart">Cart</Nav.Link> 
                                 <Nav.Link href="/">Page_Two</Nav.Link>
                             </Nav>
                             <Navbar.Collapse className="justify-content-end">
@@ -31,8 +31,7 @@ class NavigationBar extends Component {
                         </Container>
                     </Navbar>
                     <Switch>
-                        <Route path="/"></Route>
-                        <Route path="/cart"></Route>
+                        <Route path="/cart" component={Cart} exact></Route>
                     </Switch>
                 </BrowserRouter>
             </div>
@@ -54,5 +53,3 @@ class NavigationBar extends Component {
         }
     }
 }
-
-export default NavigationBar;

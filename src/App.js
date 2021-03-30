@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from './components/navigationBar';
+import { NavigationBar } from './components/navigationBar';
 
 
 class App extends Component {
     state = {
-        loggedIn: true
+        loggedIn: false
     };
 
     render() {
@@ -16,9 +16,6 @@ class App extends Component {
                 <NavigationBar
                     loggedIn={this.state.loggedIn}>
                 </NavigationBar>
-                <div>
-                    <h1>Hello World!!!</h1>
-                </div>
             </div>
         );
     }
