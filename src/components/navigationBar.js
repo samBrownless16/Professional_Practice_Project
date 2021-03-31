@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Cart } from './cart';
+import { Store } from './store';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -19,8 +20,8 @@ export class NavigationBar extends Component {
                             <Navbar.Brand href="/">Navbar</Navbar.Brand>
                             <Nav className="NavLinks ">
                                 <Nav.Link href="/">Home</Nav.Link>
+                                <Nav.Link href="/store">Store</Nav.Link>
                                 <Nav.Link href="/cart">Cart</Nav.Link> 
-                                <Nav.Link href="/">Page_Two</Nav.Link>
                             </Nav>
                             <Navbar.Collapse className="justify-content-end">
                                 <Nav>
@@ -32,6 +33,7 @@ export class NavigationBar extends Component {
                     </Navbar>
                     <Switch>
                         <Route path="/cart" component={Cart} exact></Route>
+                        <Route path="/store" component={Store} exact></Route>
                     </Switch>
                 </BrowserRouter>
             </div>

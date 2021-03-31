@@ -1,18 +1,24 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+
 
 export class Cart extends React.Component {
-
-
+    state = {
+        user: '',
+        autoSub: false
+      };
+    componentDidMount() {
+        const autoSub = localStorage.getItem('autoSub') === 'true';
+        const user = autoSub ? localStorage.getItem('user') : '';
+        this.setState({ user, autoSub });
+      }
     render() {
 
         return (
             <div>
                 <Card style={{ width: '18rem', margin: 'auto' }}>
-                    Testing
+                
+                {this.state.user}
                 </Card>
             </div>
         );
