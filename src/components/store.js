@@ -1,12 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export class Store extends React.Component {
     state = {
-        user: '',
+        amountOf: null,
         autoSub: false
       };
 
@@ -18,27 +18,30 @@ export class Store extends React.Component {
       };
      
       handleFormSubmit = () => {
-        const { user, autoSub } = this.state;
+        const { amountOf, autoSub } = this.state;
   localStorage.setItem('autoSub', autoSub);
-  localStorage.setItem('user', autoSub ? user : '');
+  localStorage.setItem('amountOf', autoSub ? amountOf : null);
       };
 
       componentDidMount() {
         const autoSub = localStorage.getItem('autoSub') === 'true';
-        const user = autoSub ? localStorage.getItem('user') : '';
-        this.setState({ user, autoSub });
+        const amountOf = autoSub ? localStorage.getItem('amountOf') : null;
+        this.setState({ amountOf, autoSub });
       }
 
     render() {
         return (
           <form onSubmit={this.handleFormSubmit}>
-            <label>
-              User: <input name="user" value={this.state.user} onChange={this.handleChange}/>
-            </label>
+            Amount Of Items bought
+          <input type='number' min="0" max="6"
+                            className='form-control'
+                            value={this.state.NumbersOfPeople}>
+                          </input>  
+                        
             <label>
               <input name="autoSub" checked={this.state.autoSub} onChange={this.handleChange} type="checkbox"/> Auto Subscirbe
             </label>
-            <button type="submit">Sign In</button>
+            <button type="submit">Add to cart</button>
           </form>
         );
       }
