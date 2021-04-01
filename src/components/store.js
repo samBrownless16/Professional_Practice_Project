@@ -1,48 +1,79 @@
 import React from 'react';
-import axios from 'axios';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-
 export class Store extends React.Component {
-    state = {
-        amountOf: null,
-        autoSub: false
-      };
+  constructor() {
+    super();
+    this. state = {
+    amountOf: 0,
+    autoSub: false
+  };
+  this.handleChange = this.handleChange.bind(this);
+}
 
-      handleChange = (event) => {
-        const input = event.target;
-        const value = input.type === 'checkbox' ? input.checked : input.value;
-     
-        this.setState({ [input.name]: value });
-      };
-     
-      handleFormSubmit = () => {
-        const { amountOf, autoSub } = this.state;
-  localStorage.setItem('autoSub', autoSub);
-  localStorage.setItem('amountOf', autoSub ? amountOf : null);
-      };
+  handleChange = (event) => {
+    console.log(event.target);
+    console.log(event.target.name);
+    var input = event.target;
+    var value = input.type === 'checkbox' ? input.checked : input.value;
 
-      componentDidMount() {
-        const autoSub = localStorage.getItem('autoSub') === 'true';
-        const amountOf = autoSub ? localStorage.getItem('amountOf') : null;
-        this.setState({ amountOf, autoSub });
-      }
+    this.setState({ [input.name]: value });
+  };
 
-    render() {
-        return (
-          <form onSubmit={this.handleFormSubmit}>
-            Amount Of Items bought
-          <input type='number' min="0" max="6"
-                            className='form-control'
-                            value={this.state.NumbersOfPeople}>
-                          </input>  
-                        
-            <label>
-              <input name="autoSub" checked={this.state.autoSub} onChange={this.handleChange} type="checkbox"/> Auto Subscirbe
-            </label>
-            <button type="submit">Add to cart</button>
-          </form>
-        );
-      }
+  handleFormSubmit = () => {
+    var { amountOf, autoSub } = this.state;
+    localStorage.setItem('autoSub', autoSub);
+    localStorage.setItem('amountOf', amountOf ? amountOf : 0);
+  };
+
+  componentDidMount() {
+
+    var autoSub = localStorage.getItem('autoSub') === 'true';
+    var amountOf = localStorage.getItem('amountOf')
+    if(amountOf == null)
+    {
+      amountOf=0;
+    }
+    
+
+    this.setState({ amountOf, autoSub });
+  }
+
+  render() {
+    return (
+  
+        <Card style={{ width: '75%', margin: 'auto' }}>
+           <img style={{ margin: 'auto',  width: '75%'}} src="msi_geforce_rtx_2060.jpg" alt="msi_geforce_rtx_2060 Image"></img>
+        <div className="form-group">
+        <label><b>Core/Memory</b> - 
+Boost Clock / Memory Speed, 
+1695 MHz / 14 Gbps, 
+8GB GDDR6, 
+DisplayPort x 3(v1.4a), 
+HDMI x 1(Supports 4K@60Hz as specified in HDMI 2.0b), 
+Twin Frozr 7 Thermal Design
+<br></br>
+<b>TORX Fan 3.0</b> - Dispersion fan blade: Steep curved blade accelerating the airflow., 
+ Traditional fan blade: Provides steady airflow to massive heat sink below., 
+Mastery of Aerodynamics: The heatsink is optimized for efficient heat dissipation, keeping your temperatures low and performance high., 
+Zero Frozr technology: Stopping the fan in low-load situations, keeping a noise-free environment.
+<br></br>
+
+<b>Dragon Center</b> - 
+
+A consolidated platform that offers all software including MYSTIC LIGHT functionality for your MSI Gaming product. </label>
+          <label>
+          <label>How many:(6 max) </label>
+          <input name='amountOf' type='number' min="-1" max="6"
+            value={this.state.amountOf}
+            onChange={this.handleChange}>
+          </input>
+            
+            <input name="autoSub" checked={this.state.autoSub} onChange={this.handleChange} type="checkbox" /> Speedy delivery
+            </label> 
+          <button type="submit" onClick={this.handleFormSubmit}>Add to cart</button>
+        </div>
+        </Card>
+   
+    );
+  }
 }
