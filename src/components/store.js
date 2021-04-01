@@ -60,7 +60,10 @@ Zero Frozr technology: Stopping the fan in low-load situations, keeping a noise-
 
 <b>Dragon Center</b> - 
 
-A consolidated platform that offers all software including MYSTIC LIGHT functionality for your MSI Gaming product. </label>
+A consolidated platform that offers all software including MYSTIC LIGHT functionality for your MSI Gaming product. 
+<br></br>
+Price of a unit is €560
+</label>
           <label>
           <label>How many:(6 max) </label>
           <input name='amountOf' type='number' min="-1" max="6"

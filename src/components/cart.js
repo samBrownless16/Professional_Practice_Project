@@ -33,6 +33,8 @@ export class Cart extends React.Component {
               <b>{this.state.amountOf} msi geforce rtx 2060</b>
               <br></br> 
               Speedy delivery
+              <br></br>
+              Price:€
               </label> 
                 </Card>
             </div>
