@@ -47,6 +47,10 @@
     border-radius: 10px;
 }
 
+#navbarButton {
+    margin-left: 1em;
+}
+
 .margin {
     margin: 2em;
 }

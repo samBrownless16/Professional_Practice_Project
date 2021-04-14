@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+const port = 4000;
 
 export class Login extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export class Login extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        axios.get('http://localhost:4000/loginattempt/', {
+        axios.get(`http://localhost:${port}/loginattempt/`, {
             params: {
                 user: this.state.username,
                 pw: this.state.password
@@ -27,7 +28,7 @@ export class Login extends Component {
         })
         .then(response => {
             if (response.data.length > 0) {
-                this.props.onLogin(this.state.username);
+                this.props.onLogin(response.data[0].firstName);
             } else {
                 this.setState({ username: '', password: '', invalidLogin: true });
             }
@@ -37,31 +38,13 @@ export class Login extends Component {
         });   
     }
 
-    /*onSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            var response = await axios.get('http://localhost:4000/loginattempt/', {
-                params: {
-                    user: this.state.username,
-                    pw: this.state.password
-                }
-            });
-            if (response.data.length > 0) {
-                this.props.onLogin(this.state.username);
-            } else {
-                this.setState({ username: '', password: '', invalidLogin: true });
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }*/
-
     render() {
         if (this.props.username != null) {
             return (<Redirect exact to="/store" />);
         } else {
             return (
-                <div className="Login">
+                <div className="Login topMargin">
+                    <h5>Don't have an account? <Link to="/signup">Sign Up</Link></h5>
                     <div className="container-fluid col-lg-4">
                         <h2>Sign In</h2>
                         <Form onSubmit={this.onSubmit}>

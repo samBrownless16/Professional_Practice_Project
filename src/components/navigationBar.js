@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import { Cart } from './cart';
-import { Login } from './login';
 import { Store } from './store';
 import { ProductPage } from './productPage';
+import { Cart } from './cart';
+import { Login } from './login';
+import { Signup } from './signup';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -24,29 +25,34 @@ export class NavigationBar extends Component {
                     <Navbar className="d-flex align-items-center" bg="dark" variant="dark" sticky="top">
                         <Container>
                             <Navbar.Brand href="/">Navbar</Navbar.Brand>
-                            <Nav className="NavLinks">
-                                <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="/cart">Cart</Nav.Link>
-                                <Nav.Link href="/store">Store</Nav.Link>
-                            </Nav>
-                            <Navbar.Collapse className="justify-content-end">
-                                <Nav onSelect={this.handleSelect}>
-                                    {this.displayUserOrGuest()}
-                                    <Nav.Link href="/"><Cart4 color="white" size={24}></Cart4></Nav.Link>
+                            <Navbar.Collapse>
+                                <Nav className="NavLinks">
+                                    <Nav.Link href="/">Home</Nav.Link>
+                                    <Nav.Link href="/cart">Cart</Nav.Link>
+                                    <Nav.Link href="/store">Store</Nav.Link>
                                 </Nav>
+                            </Navbar.Collapse>
+                            <Navbar.Collapse className="justify-content-end">
+                                {this.displayUserOrGuest()}
                             </Navbar.Collapse>
                         </Container>
                     </Navbar>
                     <Switch>
+                        <Route path="/store" component={Store} exact></Route>
+                        <Route path="/view_product/:id" component={ProductPage} exact></Route>
                         <Route path="/cart" component={Cart} exact></Route>
+                        <Route 
+                            path="/signup" exact 
+                            render={() => (
+                                <Signup onLogin={this.props.handleLogin} />
+                            )}>
+                        </Route>
                         <Route
-                            path="/login"
+                            path="/login" exact 
                             render={() => (
                                 <Login onLogin={this.props.handleLogin} username={this.props.username} />
                             )}>
                         </Route>
-                        <Route path="/store" component={Store} exact></Route>
-                        <Route path="/view_product/:id" component={ProductPage} exact></Route>
                     </Switch>
                 </BrowserRouter>
             </div>
@@ -56,14 +62,20 @@ export class NavigationBar extends Component {
     displayUserOrGuest() {
         if (this.props.username != null) {
             return (
-                <NavDropdown title={this.props.username}>
-                    <NavDropdown.Item href="/">Your Orders</NavDropdown.Item>
-                    <NavDropdown.Item href="/store" eventKey="Logout">Logout</NavDropdown.Item>
-                </NavDropdown>
+                <Nav onSelect={this.handleSelect}>
+                    <NavDropdown title={this.props.username}>
+                        <NavDropdown.Item href="/">Your Orders</NavDropdown.Item>
+                        <NavDropdown.Item href="/store" eventKey="Logout">Logout</NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link href="/"><Cart4 color="white" size={24}></Cart4></Nav.Link>
+                </Nav>
             );
         } else {
             return (
-                <Link className="btn btn-outline-light" to="/login">Login</Link>
+                <Nav>
+                    <Link to="/signup" className="btn btn-outline-light" id="navbarButton">Sign up</Link>
+                    <Link to="/login" className="btn btn-outline-light" id="navbarButton">Login</Link>
+                </Nav>
             );
         }
     }

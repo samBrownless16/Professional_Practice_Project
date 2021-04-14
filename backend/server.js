@@ -7,7 +7,7 @@ const cors = require('cors');
 //var connection = mysql.createConnection({
 var connection = mysql.createPool({
 	connectionLimit: 20,
-    host: '',
+	host: 'localhost',
     user: 'customer',
     password: '',
     database: "storeDB"
@@ -31,7 +31,15 @@ app.listen(port, () => {
 });
 
 app.get('/loginattempt', function(req, res) {
-    connection.query('SELECT username, pw from users WHERE username = ? AND pw = ?', [req.query.user, req.query.pw], function (error, data) {
+    connection.query('SELECT firstName from users WHERE email = ? AND pw = ?', [req.query.user, req.query.pw], function (error, data) {
+		if (error) throw error;
+		res.json(data);
+	});
+});
+
+app.post('/signup', function(req, res) {
+	connection.query('INSERT INTO users (email, firstName, surname, pw) VALUES (?, ?, ?, ?)', 
+	[req.body.email, req.body.firstName, req.body.surname, req.body.pw], function (error, data) {
 		if (error) throw error;
 		res.json(data);
 	});
