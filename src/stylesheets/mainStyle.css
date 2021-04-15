@@ -63,6 +63,10 @@
     margin-bottom: 2em;
 }
 
+#leftMargin {
+    margin-left: 2em;
+}
+
 .greenText {
     color: green;
 }
