@@ -9,9 +9,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
 import { Cart4 } from 'react-bootstrap-icons';
 
 export class NavigationBar extends Component {
+    state = { searchTerm: '' }
+
     handleSelect = (eventKey) => {
         if (eventKey === "Logout") {
             this.props.handleLogout();
@@ -22,23 +25,29 @@ export class NavigationBar extends Component {
         return (
             <div className="NavigationBar">
                 <BrowserRouter>
-                    <Navbar className="d-flex align-items-center" bg="dark" variant="dark" sticky="top">
+                    <Navbar className="d-flex align-items-center" bg="dark" variant="dark" sticky="top" expand="md">
                         <Container>
                             <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse>
                                 <Nav className="NavLinks">
                                     <Nav.Link href="/">Home</Nav.Link>
                                     <Nav.Link href="/cart">Cart</Nav.Link>
                                     <Nav.Link href="/store">Store</Nav.Link>
                                 </Nav>
+                                <Form id="leftMargin" inline>
+                                    <Form.Control type="input" value={this.state.searchTerm} onChange={this.onChangeSearchTerm} placeholder="Product Search" />
+                                    <Link to={"/store/" + this.state.searchTerm} className="btn btn-success" id="navbarButton">Search</Link>
+                                </Form>
                             </Navbar.Collapse>
-                            <Navbar.Collapse className="justify-content-end">
+                             <Navbar.Collapse className="justify-content-end">
                                 {this.displayUserOrGuest()}
                             </Navbar.Collapse>
                         </Container>
                     </Navbar>
                     <Switch>
                         <Route path="/store" component={Store} exact></Route>
+                        <Route path="/store/:search" component={Store} exact></Route>
                         <Route path="/view_product/:id" component={ProductPage} exact></Route>
                         <Route path="/cart" component={Cart} exact></Route>
                         <Route 
@@ -79,4 +88,6 @@ export class NavigationBar extends Component {
             );
         }
     }
+
+    onChangeSearchTerm = (e) => { this.setState({ searchTerm: e.target.value }); }
 }

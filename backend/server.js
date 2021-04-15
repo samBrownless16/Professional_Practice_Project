@@ -52,6 +52,14 @@ app.get('/allproducts', function(req, res) {
 	});
 });
 
+app.get('/product_search/:search', function(req, res) {
+	var search = '%' + req.params.search + '%';
+	connection.query('SELECT * FROM products WHERE productName LIKE ? OR productDescription LIKE ?', [search, search], function (error, data) {	
+		if (error) throw error;
+		res.json(data);
+	});
+});
+
 app.get('/view_product/:id', function(req, res) {
 	connection.query('SELECT * from products WHERE productID = ?', [req.params.id], function (error, data) { 
 		if (error) throw error;
