@@ -18,7 +18,8 @@ export class ProductPage extends Component {
         description: '',
         price: '',
         image: '',
-        orderQuantity: 1
+        quantityAllowed: '',
+        orderQuantity: ''
     }
 
     componentDidMount() {
@@ -26,7 +27,9 @@ export class ProductPage extends Component {
             product: this.props.location.productInfo.productName,
             description: this.props.location.productInfo.productDescription,
             price: this.props.location.productInfo.productPrice,
-            image: this.props.location.productInfo.imageURL
+            image: this.props.location.productInfo.imageURL,
+            quantityAllowed: (this.props.location.productInfo.productStockAmount > 4) ? maxOrder : this.props.location.productInfo.productStockAmount,
+            orderQuantity: (this.props.location.productInfo.productStockAmount > 0) ? 1 : 0
         });
     }
 
@@ -47,27 +50,51 @@ export class ProductPage extends Component {
                 </Row>
                 <Row className="bottomMargin">
                     <Col>
-                        <h4 className="greenText">In Stock</h4>
+                        {this.stockAmountText()}
                     </Col>
                     <Col>
                         <Form inline>
-                            <Form.Label style={{marginRight: "1em"}}><h4>Quantity:</h4></Form.Label>
-                            <Form.Control as="select" onChange={this.onChangeOrderQuantity}>
-                                {Array.from({ length: maxOrder }).map((_, num) => (
-                                    <option key={num}>{num + 1}</option>
-                                ))}
-                            </Form.Control>
+                            <Form.Label style={{ marginRight: "1em" }}><h4>Quantity:</h4></Form.Label>
+                            {this.quantityDropdown()}
                         </Form>
                     </Col>
                     <Col>
                         <h4>€{(this.state.orderQuantity * this.state.price).toFixed(2)}</h4>
                     </Col>
                     <Col>
-                        <Button className="cartButton">Add to Cart</Button>
+                        <Button className="cartButton" disabled={this.state.quantityAllowed < 1}>Add to Cart</Button>
                     </Col>
                 </Row>
             </div>
         );
+    }
+
+    stockAmountText() {
+        if (this.state.quantityAllowed === 0) {
+            return(<h4 className="redText">Out of Stock</h4>);
+        } else if (this.state.quantityAllowed < 5) {
+            return(<h4 className="greenText">Only {this.state.quantityAllowed} left!</h4>);
+        } else {
+            return(<h4 className="greenText">In Stock</h4>);
+        }
+    }
+
+    quantityDropdown() {
+        if (this.state.quantityAllowed > 0) {
+            return (
+                <Form.Control as="select" onChange={this.onChangeOrderQuantity}>
+                    {Array.from({ length: this.state.quantityAllowed }).map((_, num) => (
+                        <option key={num}>{num + 1}</option>
+                    ))}
+                </Form.Control>
+            );
+        } else {
+            return (
+                <Form.Control as="select" disabled>
+                    <option>0</option>
+                </Form.Control>
+            );
+        }
     }
 
     // #region onChange Events

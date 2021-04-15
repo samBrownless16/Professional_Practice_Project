@@ -39,7 +39,15 @@
     /* lightgrey */
 }
 
-.cartButton {
+.cartButton:enabled {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.cartButton:disabled {
     background-color: #ffc107;
     border-color: #ffc107;
     color: black;
