@@ -27,7 +27,7 @@ export class NavigationBar extends Component {
                 <BrowserRouter>
                     <Navbar className="d-flex align-items-center" bg="dark" variant="dark" sticky="top" expand="md">
                         <Container>
-                            <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                            <Navbar.Brand href="/">Digitron</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse>
                                 <Nav className="NavLinks">
