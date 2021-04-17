@@ -11,7 +11,9 @@ export class ProductPage extends Component {
     constructor(props) {
         super(props);
         this.onChangeOrderQuantity = this.onChangeOrderQuantity.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
+    
     state = {
         id: this.props.match.params.id,
         product: '',
@@ -62,13 +64,13 @@ export class ProductPage extends Component {
                         <h4>€{(this.state.orderQuantity * this.state.price).toFixed(2)}</h4>
                     </Col>
                     <Col>
-                        <Button className="cartButton" disabled={this.state.quantityAllowed < 1}>Add to Cart</Button>
+                        <Button className="cartButton" disabled={this.state.quantityAllowed < 1} onClick={this.addToCart}>Add to Cart</Button>
                     </Col>
                 </Row>
             </div>
         );
     }
-
+    
     stockAmountText() {
         if (this.state.quantityAllowed === 0) {
             return(<h4 className="redText">Out of Stock</h4>);
@@ -96,6 +98,27 @@ export class ProductPage extends Component {
             );
         }
     }
+
+    addToCart(){
+        var cartLine = {
+            id: this.props.match.params.id,
+            product: this.state.product,       
+            price: this.state.price,           
+            orderQuantity: this.state.orderQuantity,
+            lineItemPrice: this.state.price*this.state.orderQuantity
+        };
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart == null)
+        {
+            cart = [];
+        }
+
+        cart.push(cartLine);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log( localStorage.getItem('cart'));
+    }
+
+    
 
     // #region onChange Events
     onChangeOrderQuantity(e) { this.setState({ orderQuantity: e.target.value }); }
