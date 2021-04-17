@@ -8,6 +8,7 @@ const cors = require('cors');
 var connection = mysql.createPool({
 	connectionLimit: 20,
 	host: 'localhost',
+	host:'35.222.142.119',
     user: 'customer',
     password: '',
     database: "storeDB"
