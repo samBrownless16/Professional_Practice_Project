@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { CartDisplayProducts } from './cartDisplayProducts';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 export class Checkout extends Component {
@@ -28,33 +29,50 @@ export class Checkout extends Component {
         //   console.log(localStorage.getItem('cart'));
     }
 
+    onClick = () => {
+        console.log()
+    }
+
     render() {
         return (
-            <div className="Cart" style={{ width:'50%', margin: 'auto'}}>
-                <card>
-                    <label>Please enter your name: </label>
-                    <br></br>
-                    <input value='Frist name'></input>
-                    <br></br>
-                    <input value='Surname name'></input>
-                    <br></br>
-                </card>
-                <br></br>
-                <card>
-                <br></br>
-                <label>Please enter the location of where you want the package delivery: </label>
-                    <br></br>
-                    <input value='Adress'></input>
-                    <br></br>
-                    <input value='Surname name'></input>
-                    <br></br>
-                </card>
-                <card>
-                Total price €{this.state.totalPrice}
-                </card>
-                <br></br>
-                <Button class="btn">Purchase Items</Button>
+          
+            <div style={{ width:'50%', margin: 'auto'}}>
+                <Form onSubmit={this.onClick}>           
+                <Form.Row>
+                                <Form.Group as={Col}>
+                                <Form.Label>First name</Form.Label>
+                                    <Form.Control type="input" value={this.state.firstName} onChange={this.onChangeFName} required></Form.Control>
+                                                 </Form.Group>
+                                <Form.Group as={Col}>
+                                <Form.Label>Surname</Form.Label>
+                                    <Form.Control type="input" value={this.state.surname} onChange={this.onChangeSurname} required></Form.Control>
+                                </Form.Group>
+                            </Form.Row>
+
+                                <Form.Group as={Col}>
+                                    <Form.Label>Address</Form.Label>
+                                    <Form.Control type="input" value='Eircode' onChange={this.onChangeEmail} required></Form.Control>
+                                    <br></br>
+                                    <Form.Control type="input" value='Address' onChange={this.onChangePassword} required></Form.Control>
+                                    <br></br>
+                                    <Form.Control type="input" value='City' onChange={this.onChangePassword} required></Form.Control>
+                                    <br></br>
+                                    <Form.Control type="input" value='Country' onChange={this.onChangePassword} required></Form.Control>
+                                </Form.Group>                              
+                                <Card bg="secondary" border="dark" text="white" style={{ width:'30%', margin: 'auto'}} >
+                                     Total price for all items: €{this.state.totalPrice}
+                                 </Card>
+                                 <br></br>
+                                 
+                              
+                                 <Button class="btn" href="/cart" style={{ width:'15%', margin: 'auto'}} >Go back to Checkout</Button>
+                                 &nbsp;&nbsp;&nbsp;
+                                  <Button class="btn" href="/cart" style={{ width:'15%', margin: 'auto'}} >Purchase items</Button>
+                                  
+                             
+                        </Form>
             </div>
+
         );
     }
 }
