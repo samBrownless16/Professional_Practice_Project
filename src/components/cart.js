@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CartDisplayProducts } from './cartDisplayProducts';
 import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 
 export class Cart extends Component {
     state = { cartProducts: []}
@@ -22,7 +23,9 @@ export class Cart extends Component {
                 <CartDisplayProducts 
                     products={this.state.cartProducts}>       
                 </CartDisplayProducts>
+                <Nav.Link href="/checkout">
                 <Button class="btn">Go To Checkout</Button>
+                </Nav.Link>
             </div>
         );
     }

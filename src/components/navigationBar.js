@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { Store } from './store';
+import { Checkout } from './checkout';
 import { ProductPage } from './productPage';
 import { Cart } from './cart';
 import { Login } from './login';
@@ -50,6 +51,7 @@ export class NavigationBar extends Component {
                         <Route path="/store/:search" component={Store} exact></Route>
                         <Route path="/view_product/:id" component={ProductPage} exact></Route>
                         <Route path="/cart" component={Cart} exact></Route>
+                        <Route path="/checkout" component={Checkout} exact></Route>
                         <Route 
                             path="/signup" exact 
                             render={() => (
