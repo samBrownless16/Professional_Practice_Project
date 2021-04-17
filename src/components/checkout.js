@@ -29,15 +29,15 @@ export class Checkout extends Component {
         //   console.log(localStorage.getItem('cart'));
     }
 
-    onClick = () => {
-        console.log()
+    onPurchase = () => {
+        alert('Thank you for your purchase')
     }
 
     render() {
         return (
           
             <div style={{ width:'50%', margin: 'auto'}}>
-                <Form onSubmit={this.onClick}>           
+                <Form >           
                 <Form.Row>
                                 <Form.Group as={Col}>
                                 <Form.Label>First name</Form.Label>
@@ -67,7 +67,7 @@ export class Checkout extends Component {
                               
                                  <Button class="btn" href="/cart" style={{ width:'15%', margin: 'auto'}} >Go back to Checkout</Button>
                                  &nbsp;&nbsp;&nbsp;
-                                  <Button class="btn" href="/cart" style={{ width:'15%', margin: 'auto'}} >Purchase items</Button>
+                                  <Button class="btn" onClick={() => this.onPurchase()} href="/" style={{ width:'15%', margin: 'auto'}} >Purchase items</Button>
                                   
                              
                         </Form>
