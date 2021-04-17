@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { CartDisplayProducts } from './cartDisplayProducts';
 import Button from 'react-bootstrap/Button';
 
@@ -11,9 +10,9 @@ export class Cart extends Component {
        componentDidMount() {
       var cart = JSON.parse(localStorage.getItem('cart'));
       this.setState ({cartProducts : cart });
-      // if (cart == null) {
-     //    cart = [];
-   //}
+      if (cart == null) {
+        cart = [];
+   }
     //   console.log(localStorage.getItem('cart'));
     }
 
