@@ -10,7 +10,7 @@ export class CartDisplayProducts extends Component {
         this.state = { name: "React Component reload sample" };
     }
    
-
+//create a dummy state so that the when the button is ckicked it updates the page
     DeleteCartProduct(product) {
         var index = this.props.products.indexOf(product);
         if (index !== -1) {
@@ -34,9 +34,6 @@ export class CartDisplayProducts extends Component {
                         <p className="storeText">{product.orderQuantity} for €{product.price} each at a total of €{product.lineItemPrice}</p>
                         <Button type="submit" id="empty-cart" variant="danger" class="btn" onClick={() => this.DeleteCartProduct(product)} >
                             Delete form cart</Button>
-
-
-
                     </Card>
                     <br></br>
                 </div>

@@ -16,7 +16,7 @@ export class Cart extends Component {
    }
     //   console.log(localStorage.getItem('cart'));
     }
-
+    //calls cartDisplay in order to act as a for loop to show thier char
     render() { 
         return ( 
             <div className="Cart">

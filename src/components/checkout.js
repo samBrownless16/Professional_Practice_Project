@@ -11,8 +11,7 @@ export class Checkout extends Component {
         totalPrice: 0
     }
 
-    /* Need a DidUpdate here as cart page will not update if a search is performed while  
-       already on the cart page i.e. the Cart component is already mounted */
+    
     componentDidMount() {
         var cart = JSON.parse(localStorage.getItem('cart'));
 
@@ -62,14 +61,10 @@ export class Checkout extends Component {
                                 <Card bg="secondary" border="dark" text="white" style={{ width:'30%', margin: 'auto'}} >
                                      Total price for all items: €{this.state.totalPrice}
                                  </Card>
-                                 <br></br>
-                                 
-                              
+                                 <br></br>     
                                  <Button class="btn" href="/cart" style={{ width:'15%', margin: 'auto'}} >Go back to Checkout</Button>
                                  &nbsp;&nbsp;&nbsp;
-                                  <Button class="btn" onClick={() => this.onPurchase()} href="/" style={{ width:'15%', margin: 'auto'}} >Purchase items</Button>
-                                  
-                             
+                                  <Button class="btn" onClick={() => this.onPurchase()} href="/" style={{ width:'15%', margin: 'auto'}} >Purchase items</Button>                                                    
                         </Form>
             </div>
 
