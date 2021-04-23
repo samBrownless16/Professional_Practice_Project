@@ -4,10 +4,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-//var connection = mysql.createConnection({
 var connection = mysql.createPool({
 	connectionLimit: 20,
-	host: 'localhost',
 	host:'35.222.142.119',
     user: 'customer',
     password: '',

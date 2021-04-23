@@ -50,11 +50,11 @@ export class Login extends Component {
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type="input" value={this.state.username} onChange={this.onChangeUsername} placeholder="Enter Username" required></Form.Control>
+                                <Form.Control type="email" value={this.state.username} onChange={this.onChangeUsername} placeholder="Enter Username" required></Form.Control>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="input" value={this.state.password} onChange={this.onChangePassword} placeholder="Enter Password" required></Form.Control>
+                                <Form.Control type="password" value={this.state.password} onChange={this.onChangePassword} placeholder="Enter Password" required></Form.Control>
                             </Form.Group>
                             <Button variant="dark" type="submit">Sign In</Button>
                         </Form>

@@ -12,7 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
-import { Cart4 } from 'react-bootstrap-icons';
+// import { Cart4 } from 'react-bootstrap-icons';
 
 export class NavigationBar extends Component {
     state = { searchTerm: '' }
@@ -78,10 +78,8 @@ export class NavigationBar extends Component {
             return (
                 <Nav onSelect={this.handleSelect}>
                     <NavDropdown title={this.props.username}>
-                        <NavDropdown.Item href="/">Your Orders</NavDropdown.Item>
                         <NavDropdown.Item href="/store" eventKey="Logout">Logout</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="/"><Cart4 color="white" size={24}></Cart4></Nav.Link>
                 </Nav>
             );
         } else {
@@ -89,6 +87,7 @@ export class NavigationBar extends Component {
                 <Nav>
                     <Link to="/signup" className="btn btn-outline-light" id="navbarButton">Sign up</Link>
                     <Link to="/login" className="btn btn-outline-light" id="navbarButton">Login</Link>
+                    {/* <Nav.Link href="/cart"><Cart4 color="white" size={24}></Cart4></Nav.Link> */}
                 </Nav>
             );
         }

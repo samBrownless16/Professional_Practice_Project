@@ -57,11 +57,11 @@ export class Signup extends Component {
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Label>Email Address</Form.Label>
-                                    <Form.Control type="input" value={this.state.email} onChange={this.onChangeEmail} required></Form.Control>
+                                    <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmail} required></Form.Control>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="input" value={this.state.password} onChange={this.onChangePassword} required></Form.Control>
+                                    <Form.Control type="password" value={this.state.password} onChange={this.onChangePassword} required></Form.Control>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
