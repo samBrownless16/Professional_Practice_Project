@@ -50,13 +50,13 @@ export class Checkout extends Component {
 
                                 <Form.Group as={Col}>
                                     <Form.Label>Address</Form.Label>
-                                    <Form.Control type="input" value='Eircode' onChange={this.onChangeEmail} required></Form.Control>
+                                    <Form.Control type="input" placeholder='Eircode' onChange={this.onChangeEmail} required></Form.Control>
                                     <br></br>
-                                    <Form.Control type="input" value='Address' onChange={this.onChangePassword} required></Form.Control>
+                                    <Form.Control type="input" placeholder='Address' onChange={this.onChangePassword} required></Form.Control>
                                     <br></br>
-                                    <Form.Control type="input" value='City' onChange={this.onChangePassword} required></Form.Control>
+                                    <Form.Control type="input" placeholder='City' onChange={this.onChangePassword} required></Form.Control>
                                     <br></br>
-                                    <Form.Control type="input" value='Country' onChange={this.onChangePassword} required></Form.Control>
+                                    <Form.Control type="input" placeholder='Country' onChange={this.onChangePassword} required></Form.Control>
                                 </Form.Group>                              
                                 <Card bg="secondary" border="dark" text="white" style={{ width:'30%', margin: 'auto'}} >
                                      Total price for all items: €{this.state.totalPrice}
