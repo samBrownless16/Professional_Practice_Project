@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavigationBar } from './components/navigationBar';
-
 class App extends Component {   
     state = {
         user: ''
@@ -30,7 +29,10 @@ class App extends Component {
                     handleLogout={this.handleLogout}
                     username={this.state.user}>
                 </NavigationBar>
+               
             </div>
+          
+           
         );
     }
 }

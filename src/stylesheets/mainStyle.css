@@ -82,3 +82,16 @@
 .redText {
     color: red;
 }
+
+.mainPage {
+  
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  
+  
