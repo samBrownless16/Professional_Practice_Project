@@ -6,10 +6,10 @@ const cors = require('cors');
 
 var connection = mysql.createPool({
 	connectionLimit: 20,
-	host:'35.222.142.119',
+	host:'ppitdb.c5toqvtynzpt.eu-west-1.rds.amazonaws.com',
     user: 'customer',
     password: '',
-    database: "storeDB"
+    database: "storedb"
 });
 
 // CORS
